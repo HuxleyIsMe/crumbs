@@ -1,19 +1,32 @@
 const util = require('node:util');
 const exec = util.promisify(require('node:child_process').exec);
 
-async function getDiffingFiles() {
-
-  const { stdout, stderr } = await exec('git diff --name-only $(git merge-base HEAD main)');
-  console.error('stderr:', stderr);
-
-  // ok probs do some error handling at some point
-
-  // hm this comes out as a string how fun
-
-  let asArray = stdout.split('\n').filter(val => val)
 
 
-  return asArray
-}
+module.exports = getDiffingFiles = async () => {
+  try {
+    const { stdout } = await exec('git diff --name-only $(git merge-base HEAD main)')
 
-module.exports = {getDiffingFiles}
+    let files = stdout.split('\n').filter(Boolean)
+
+    const ignoredPatterns = [
+      'node_modules/',
+      '.gitignore',
+      'package-lock.json',
+      /^.*config\.(js|ts|json)$/i,      
+      /^.*\.config\.(js|ts|json)$/i,      
+    ]
+
+    const isIgnored = file =>
+      ignoredPatterns.some(pattern =>
+        typeof pattern === 'string'
+          ? file.startsWith(pattern)
+          : pattern.test(path.basename(file))
+      )
+
+    return files.filter(file => !isIgnored(file))
+  } catch (err) {
+    console.error(`Error loading file history`, err)
+    return []
+  }}
+  
