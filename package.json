@@ -2,9 +2,12 @@
   "name": "crumbs",
   "version": "1.0.0",
   "description": "A way to ensure we aren't leaving crumbs in our work before heading to review",
-  "main": "index.js",
   "scripts": {
     "test": "jest "
+  },
+  "main": "src/index.js",
+  "bin": {
+    "clear-crumbs": "bin/crumbs.js"
   },
   "author": "huxley millard",
   "license": "ISC",
