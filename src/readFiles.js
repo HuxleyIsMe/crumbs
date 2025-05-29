@@ -22,9 +22,7 @@ function clearUpConsoleComments (contents) {
 }
 
 exports.processFiles = (listOfFiles) => {
-
     listOfFiles.forEach(file => {
-
         fs.readFile(file, 'utf8', (err, data) => {
             if (err) {
                 console.error('Error reading file:', err);
@@ -43,9 +41,7 @@ exports.processFiles = (listOfFiles) => {
                 console.log(`successfully cleaned ${file}`)
             }
             });
-            console.log('File contents:', result);
         })
-  
     });
 }
 
