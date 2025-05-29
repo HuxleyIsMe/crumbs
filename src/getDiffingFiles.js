@@ -1,9 +1,7 @@
 const util = require('node:util');
 const exec = util.promisify(require('node:child_process').exec);
 
-
-
-module.exports = getDiffingFiles = async () => {
+exports.getDiffingFiles = async () => {
   try {
     const { stdout } = await exec('git diff --name-only $(git merge-base HEAD main)')
 
@@ -29,4 +27,3 @@ module.exports = getDiffingFiles = async () => {
     console.error(`Error loading file history`, err)
     return []
   }}
-  

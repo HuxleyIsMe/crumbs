@@ -1,6 +1,6 @@
 {
   "name": "ah-crumbs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A way to ensure we aren't leaving crumbs in our work before heading to review",
   "scripts": {
     "test": "jest "
