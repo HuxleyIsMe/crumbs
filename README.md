@@ -10,13 +10,13 @@ installing
 
 as a dev dependency 
 
-`npm install crumbs --save-dev`
+`npm install ah-crumbs --save-dev`
 
 in your main entry point:
 
 <code>
 
-    const { useCrumbs } = require('crumbs');
+    const { useCrumbs } = require('ah-crumbs');
 
     if (process.env.NODE_ENV !== 'production') {
     useCrumbs();
